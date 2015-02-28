@@ -23,10 +23,11 @@
   "Build hoplon-demo for development."
   []
   (comp
-   (watch)
+   (serve :dir (get-env :target-path)
+          :port 5000
+          :httpkit true)
+   (watch :verbose true)
    (hoplon :pretty-print true)
    (cljs :optimizations :none
          :source-map true)
-   (serve :dir (get-env :target-path)
-          :port 5000)
    (notify)))
