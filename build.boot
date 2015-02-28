@@ -24,9 +24,9 @@
   []
   (comp
    (watch)
-   (hoplon {:pretty-print true})
-   (cljs {:optimizations :none
-          :source-map true})
+   (hoplon :pretty-print true)
+   (cljs :optimizations :none
+         :source-map true)
    (serve :dir (get-env :target-path)
           :port 5000)
    (notify)))
