@@ -2,7 +2,8 @@ A demo Hoplon app.
 
 ## Requirements
 
-- boot
+- [terminal-notifier](https://github.com/alloy/terminal-notifier)
+- [boot](https://github.com/boot-clj/boot)
 
 ## Starting Up
 
