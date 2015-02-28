@@ -9,13 +9,11 @@
                             [adzerk/boot-cljs          "0.0-2814-1"     :scope "test"]
                             [adzerk/boot-cljs-repl     "0.1.9"          :scope "test"]
                             [adzerk/boot-reload        "0.2.4"          :scope "test"]
-                            [jeluard/boot-notify       "0.1.2"          :scope "test"]
                             [pandeiro/boot-http        "0.6.2"          :scope "test"]])
 
 (require   '[adzerk.boot-cljs             :refer [cljs]]
            '[adzerk.boot-cljs-repl        :refer [cljs-repl start-repl]]
            '[adzerk.boot-reload           :refer [reload]]
-           '[jeluard.boot-notify          :refer [notify]]
            '[tailrecursion.boot-hoplon    :refer [hoplon prerender]]
            '[pandeiro.boot-http           :refer [serve]])
 
@@ -26,8 +24,7 @@
    (serve :dir (get-env :target-path)
           :port 5000
           :httpkit true)
-   (watch :verbose true)
    (hoplon :pretty-print true)
    (cljs :optimizations :none
          :source-map true)
-   (notify)))
+   (watch :verbose true)))

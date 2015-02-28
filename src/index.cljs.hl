@@ -7,4 +7,13 @@
   (h1 "Hello, World!")
   (p "I finally got it running.")
   (p "Computers. "
-     (i "How do they even work?"))))
+     (i "How do they even work?"))
+  (h2 "TODO")
+  (ul
+   (li "Copy CSS from assets to target")
+   (li "Figure out exactly what's going on during compilation")
+   (li "Figure out why boot-notify doesn't work OMM")
+   (li "Figure out whey hoplon doesn't recompile my code on change"
+       (ul
+        (li "Watcher sees file changes, but doesn't recompile code changes. Maybe hoplon doesn't recompile, but something else?")))
+   (li "Figure out why the target directory disappears at random times"))))
