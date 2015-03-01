@@ -20,7 +20,6 @@
         0
         (/ (* loan-amt (/ (* effective-rate tvom) (- tvom 1))) 100))))
 
-
 ;; Cells
 
 (defc clicks 0)
@@ -28,6 +27,7 @@
 (defc loan-amount 0)
 (defc fixed-rate 0)
 (defc term 0)
+(defc= monthly-payments (vec (range 1 (+ 1 term))))
 (defc= payment (payment-due loan-amount (/ fixed-rate 100) term))
 
 ;; Markup
@@ -45,20 +45,37 @@
   (text "Clicks so far ~{clicks}")
   (button :on-click #(swap! clicks inc) "Click Me!")
   (h2 "Loans")
-  (label :for "loan-amount" "Loan Amount (in cents)")
-  (input
-   :id "loan-amount"
-   :type "text"
-   :on-change #(reset! loan-amount (int (val-id "loan-amount"))))
-  (label :for "fixed-rate" "Fixed Rate")
-  (input
-   :id "fixed-rate"
-   :type "text"
-   :value "7.00"
-   :on-change #(reset! fixed-rate (val-id "fixed-rate")))
-  (label :for "term" "Term (in months)")
-  (input
-   :id "term"
-   :type "text"
-   :on-change #(reset! term (int (val-id "term"))))
-  (text "Payment: $~{payment}")))
+  (div
+   (label :for "loan-amount" "Loan Amount (in cents)")
+   (input
+    :id "loan-amount"
+    :type "text"
+    :on-change #(reset! loan-amount (int (val-id "loan-amount")))))
+  (div
+   (label :for "fixed-rate" "Fixed Rate")
+   (input
+    :id "fixed-rate"
+    :type "text"
+    :on-change #(reset! fixed-rate (val-id "fixed-rate"))))
+  (div
+   (label :for "term" "Term (in months)")
+   (input
+    :id "term"
+    :type "text"
+    :on-change #(reset! term (int (val-id "term")))))
+  (text "Payment: $~{payment}")
+  (h4 "Amortization Table")
+  (table
+   (th
+    (td "Period")
+    (td "Payment")
+    (td "Principal")
+    (td "Interest")
+    (td "Balance"))
+   (loop-tpl :bindings [period monthly-payments]
+             (tr
+              (td (text period))
+              (td (text "~{payment}"))
+              (td "0")
+              (td "0")
+              (td "0"))))))
