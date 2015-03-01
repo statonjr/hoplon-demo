@@ -8,4 +8,5 @@
      {:font-family "Helvetica Neue"
       :font-size "16px"
       :line-height 1.5}))
-  [:h2 {:color "red"}])
+  [:h2 {:color "red"}]
+  [:input {:display "block"}])
